@@ -1,0 +1,60 @@
+
+---- Compute mean and rms energy for each point of the Bragg curve ----
+
+The file contains data corresponding to events with different 
+total energies: compute mean and rms energies selecting events 
+with total energy between 6000 and 7500, without any background 
+subtraction.
+
+Add four arrays to the "main" program:
+- one to contain, for each point, the sum of energies,
+- one to contain, for each point, the sum of squares of energies,
+- one to contain, for each point, the mean energy,
+- one to contain, for each point, the rms  energy.
+
+Dimension the arrays to the minimum number of points.
+Use an "extern" variable to contain the minimum number of points, and 
+choose in which source file to set it; it's to be set at 120.
+
+Add two functions as described in the following.
+
+***
+Create a function "add" taking as arguments:
+- a reference to const-event,
+- two arrays for the sum of energies and the the sum of squares,
+- two int numbers for the minimum and maximum total energy.
+Inside the function compute the total energy of the event, by summing 
+over all the points; to obtain results comparable for different events 
+limit the sum to the minimum number of points.
+If the total energy is comprised between the minimum and maximum 
+use the energies in the points to increase the sums of energies 
+and squares, otherwise leave those sums unchanged.
+Return true or false if the total energy was in the range or not, 
+respectively.
+
+***
+Create a function "stat" taking as arguments:
+- the number of events,
+- the number of points,
+- the four arrays for the sum of energies, the sum of squares, 
+  the mean energies and the rms.
+Inside the function compute, for each point, mean and rms starting
+from the sums of energies and squares and the number of events.
+
+***
+Create a main function reading the file and calling the 
+add and stat functions, using 6000 and 7500 as min and max total energy.
+Compute the number of events by increasing a counter according to 
+the return value of the "add" function.
+Use the minimum number of points when calling the "stat" function.
+Print the results on the screen.
+
+********* final list of functions *********
+
+main                   modify Dump_v02
+struct Event           copy   Dump_v02
+read                   copy   Dump_v02
+clear                  copy   Dump_v02
+dump                   copy   Dump_v02
+add                    to do
+stat                   to do
