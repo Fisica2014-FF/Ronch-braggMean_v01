@@ -15,5 +15,4 @@ struct Event {
 	int* energies;
 };
 
-
 #endif /* EVENT_H_ */

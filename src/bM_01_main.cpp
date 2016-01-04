@@ -2,7 +2,6 @@
 // Name        : ECLIPSE_MARS_PROJECT_CPP11.cpp
 // Author      : Francesco Forcher
 // Version     : 0.1
-// Copyright   : All rights reserved © 2015
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
@@ -15,14 +14,15 @@
 
 using namespace std;
 
-//const has static linkage by default, so we must use explicitly extern here.
+// const has static linkage by default, so we must use explicitly extern here.
 extern const unsigned MIN_POINTS = 120;
 
 void clear(Event* ev);
 
 Event* read(std::ifstream& ifs);
 
-void dump(const Event& ev);
+// Not used
+//void dump(const Event& ev);
 
 bool add(const Event& ev, long sumenergies[], unsigned long sumsquares[],
 		int min_en, int max_en);
@@ -38,8 +38,12 @@ int main(int argc, char* argv[]) {
 	DBG(const char* filename = "./bragg_events.txt";
 		, const char* filename = argv[1];)
 
-	//Open file
+	//Try to open the file and check the stream.
 	ifstream ifs(filename);
+	if (!ifs) {
+		cerr << "[ERROR] File not opened";
+		return -1;
+	}
 	long* sumenergies = new long[MIN_POINTS];
 	unsigned long* sumsquares = new unsigned long[MIN_POINTS];
 	double* meanenergies = new double[MIN_POINTS];
@@ -73,10 +77,12 @@ int main(int argc, char* argv[]) {
 	//Print the four arrays
 	cout << "Point     TotEnergy  TotSquares MeanEnergy     RMS" << endl;
 	for (unsigned i = 0; i < MIN_POINTS; ++i) {
-		printf("%9u %9i  %9u  %9f %9f",i+1,sumenergies[i],sumsquares[i],meanenergies[i],rmsenergies[i]);
+		printf("%9u %9i  %9u  %9f %9f", i + 1, sumenergies[i], sumsquares[i],
+				meanenergies[i], rmsenergies[i]);
 		cout << endl;
 	}
 
+	// Not really necessary to delete, now, but it's a good habit.
 	delete[] sumenergies;
 	delete[] sumsquares;
 	delete[] meanenergies;

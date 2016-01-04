@@ -8,7 +8,6 @@
 #ifndef DBG_MACRO_H_
 #define DBG_MACRO_H_
 
-
 /* DBG: Function-like macro for debug, when macro DEBUG is defined DBG_ALT is
  * expanded into its first argument, otherwise its expanded into its second
  * argument. Arguments can be void, but is preferable to use a empty statement
@@ -19,7 +18,5 @@
 #else
 #define DBG(x, y) y
 #endif
-
-
 
 #endif /* DBG_MACRO_H_ */

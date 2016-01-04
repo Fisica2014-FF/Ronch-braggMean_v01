@@ -14,4 +14,3 @@ void clear(Event* ev) {
 	ev = nullptr;
 }
 
-
