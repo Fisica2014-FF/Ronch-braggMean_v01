@@ -15,11 +15,14 @@
 void stat(const unsigned numevents, const unsigned numpoints,
 		long sumenergies[], unsigned long sumsquares[], double meanenergies[],
 		double rmsenergies[]) {
+	using namespace std;
 
 	//For every point, calculate the mean and rms
 	for (unsigned i = 0; i < numpoints; ++i) {
 		meanenergies[i] = sumenergies[i] / double(numevents);
-		rmsenergies[i] = std::sqrt(sumsquares[i] / double(numevents));
+		rmsenergies[i] = sqrt(
+				sumsquares[i] / double(numevents) - pow(
+						sumenergies[i] / double(numevents), 2));
 	}
 
 	return;

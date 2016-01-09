@@ -1,13 +1,12 @@
 //============================================================================
-// Name        : ECLIPSE_MARS_PROJECT_CPP11.cpp
+// Name        : bM_01_main.cpp
 // Author      : Francesco Forcher
-// Version     : 0.1
+// Version     : 1.1
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
 #include <iostream>
 #include <fstream>
-
 
 #include "dbg_macro.h"
 #include "Event.h"
@@ -34,16 +33,17 @@ void stat(const unsigned numevents, const unsigned numpoints,
 int main(int argc, char* argv[]) {
 	using namespace std;
 
-	//Read file name, see DBG macro
+	// Read file name, see DBG macro
 	DBG(const char* filename = "./bragg_events.txt";
 		, const char* filename = argv[1];)
 
-	//Try to open the file and check the stream.
+	// Try to open the file and check the stream.
 	ifstream ifs(filename);
 	if (!ifs) {
 		cerr << "[ERROR] File not opened";
 		return -1;
 	}
+
 	long* sumenergies = new long[MIN_POINTS];
 	unsigned long* sumsquares = new unsigned long[MIN_POINTS];
 	double* meanenergies = new double[MIN_POINTS];
